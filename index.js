@@ -1,5 +1,9 @@
 const fs = require('fs');
 
+/**
+ * Classe StringFormatter que herda a classe String e a modifica
+ *  - Seus métodos retornaram outra instância da própria classe por não ser possível modificar diretamente as propriedades da classe String
+ */
 class StringFormatter extends String {
     constructor(value) {
         super(value);
@@ -14,6 +18,11 @@ class StringFormatter extends String {
     }
 }
 
+/**
+ * Método que recebe um texto e retorna a quantidade de palavras únicas dele
+ * @param {string} text 
+ * @returns {number} wordCounter
+ */
 const countUniqueWordsFromText = (text) => {
     const array = text.split(/\s+/);
     
@@ -30,18 +39,25 @@ const countUniqueWordsFromText = (text) => {
     return counter;
 }
 
-fs.readFile('arquivo.txt', 'utf-8', (err, data) => {
-    if (err) {
-        console.log('Erro ao ler arquivo!');
-        throw err;
-    };
-
-    let text = new StringFormatter(data);
-    text = text
-        .removeAccents()
-        .removeSpecialCharacters()
-        .toLowerCase();
+/**
+ * Função core do programa que realiza o procedimento de leitura do arquivo.txt e contagem de palavras únicas dele formatado.
+ */
+const main = () => {
+    fs.readFile('arquivo.txt', 'utf-8', (err, data) => {
+        if (err) {
+            console.log('Erro ao ler arquivo!');
+            throw err;
+        };
     
-    const uniqueWordsLength = countUniqueWordsFromText(text);
-    console.log(`Palavras únicas: ${uniqueWordsLength}`);
-});
+        let text = new StringFormatter(data);
+        text = text
+            .removeAccents()
+            .removeSpecialCharacters()
+            .toLowerCase();
+        
+        const uniqueWordsLength = countUniqueWordsFromText(text);
+        console.log(`Palavras únicas: ${uniqueWordsLength}`);
+    });
+}
+
+main();
