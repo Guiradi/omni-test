@@ -1,0 +1,3 @@
+Este é um exemplo de texto.
+Neste exemplo, contaremos o número de palavras únicas.
+Exemplo é uma palavra que aparece várias vezes neste texto.
